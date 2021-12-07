@@ -1,0 +1,11 @@
+<h3>Notes</h3>
+<div *ngFor="let note of notes">
+    <p (click)="onEdit(note.title)">{{note.title}}</p>
+</div>
+
+
+<form [formGroup]="newNote" (ngSubmit)="onSave()">
+    <input type="text" placeholder="title" formControlName="newTitle"> <br>
+    <input type="text" placeholder="content" formControlName="newContent"> <br>
+    <button>Save</button>
+</form>
