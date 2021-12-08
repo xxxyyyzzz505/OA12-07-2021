@@ -36,12 +36,14 @@ export class NoteService {
     this.data.push(newNote)
     console.log(this.data);
     localStorage.setItem('notes', JSON.stringify(this.data));
+    alert('New note added.');
   }
 
   edditNote (newNote: Note) {
     let pickedNote = this.pickNote(newNote.title);
     pickedNote.content = newNote.content;
     localStorage.setItem('notes', JSON.stringify(this.data));
+    alert(`${pickedNote.title} eddited.`);
   }
 
   saveNote (newNote: Note) {
@@ -63,5 +65,6 @@ export class NoteService {
   deleteNote (title: string) {
     this.data.splice(this.data.indexOf(this.pickNote(title)), 1);
     localStorage.setItem('notes', JSON.stringify(this.data));
+    alert(`${title} deleted.`);
   }
 }
