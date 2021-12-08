@@ -21,7 +21,11 @@ export class NoteService {
     }
 ]
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    if (localStorage.getItem('notes') !== null) {
+      this.data = JSON.parse(localStorage.getItem('notes')!);
+    }
+  }
 
   getNotes () {
     // return this.http.get<{title: string, content: string}[]>("../assets/data.json");
@@ -31,19 +35,22 @@ export class NoteService {
   addNote (newNote: Note) {
     this.data.push(newNote)
     console.log(this.data);
+    localStorage.setItem('notes', JSON.stringify(this.data));
   }
 
   edditNote (newNote: Note) {
     let pickedNote = this.pickNote(newNote.title);
     pickedNote.content = newNote.content;
+    localStorage.setItem('notes', JSON.stringify(this.data));
   }
 
   saveNote (newNote: Note) {
     for (let note of this.data) {
       if (note.title === newNote.title) {
         this.edditNote(newNote);
-      } else continue
-      return
+        return
+      } 
+      else continue
     }
     this.addNote(newNote);
   } 
@@ -54,6 +61,7 @@ export class NoteService {
     }
   }
   deleteNote (title: string) {
-    this.data.splice(this.data.indexOf(this.pickNote(title)), 1)
+    this.data.splice(this.data.indexOf(this.pickNote(title)), 1);
+    localStorage.setItem('notes', JSON.stringify(this.data));
   }
 }

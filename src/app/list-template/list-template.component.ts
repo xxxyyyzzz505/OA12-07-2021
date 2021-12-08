@@ -41,4 +41,9 @@ export class ListTemplateComponent implements OnInit {
     this.noteAPI.deleteNote(title)
   }
 
+  onRevert() {
+    this.newTitle = '';
+    this.newContent = '';
+  }
+
 }

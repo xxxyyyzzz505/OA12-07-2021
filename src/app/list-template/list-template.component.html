@@ -10,6 +10,7 @@
 <div>
     <input type="text" placeholder="title" [(ngModel)]="newTitle"> <br>
     <textarea type="text" rows="5" placeholder="content" [(ngModel)]="newContent"></textarea> <br>
+    <button (click)="onRevert()">Revert</button>
     <button (click)="onSave()">Save</button>
 </div>
 
